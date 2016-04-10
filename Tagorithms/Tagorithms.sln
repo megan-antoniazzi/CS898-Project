@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{15511A37-56EB-8DDE-65BD-70184CCE9C52}") = "Tagorithms", "Assembly-CSharp.csproj", "{B5D31FE6-1194-CD3C-050E-F48C0E83401A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5D31FE6-1194-CD3C-050E-F48C0E83401A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5D31FE6-1194-CD3C-050E-F48C0E83401A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5D31FE6-1194-CD3C-050E-F48C0E83401A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5D31FE6-1194-CD3C-050E-F48C0E83401A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

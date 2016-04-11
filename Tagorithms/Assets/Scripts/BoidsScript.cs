@@ -44,7 +44,6 @@ public class BoidsScript : MonoBehaviour {
 	//player
 	PlayerScript player;
 
-	// Use this for initialization
 	void Start () {
 		//player
 		GameObject pObject = GameObject.FindWithTag ("Player");
@@ -59,12 +58,6 @@ public class BoidsScript : MonoBehaviour {
 
 		boids = GameObject.FindGameObjectsWithTag ("FlockBoid");
 
-		/*for (int i = 0; i < boids.Length; i++) {
-			//boids[i] = GameObject.Instantiate(Resources.Load("FlockBoid")) as GameObject;
-			//boids[i].transform.position = new Vector3(i, 0, 0);
-			//create a rand pos for each boid
-
-		}*/
 		bestPos = new float[boids.Length,3]; //x,y,dist
 		dists = new float[boids.Length,3]; //x,y,dist
 		//set an initial position and velocity for each boid
@@ -100,17 +93,10 @@ public class BoidsScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		mousePos = player.transform.position;
 
 		switch (type) {
 		case 0: //control
-			/*for (int i = 0; i < boids.Length; i++) {
-			//boids[i].transform.position = Vector2.Lerp (boids[i].transform.position, mousePos, controlSpeed);
-			float step = controlSpeed * Time.deltaTime;
-			boids [i].transform.position = Vector3.MoveTowards (boids [i].transform.position, mousePos, step);
-			boids [i].transform.position = new Vector3 (boids [i].transform.position.x, boids [i].transform.position.y, 0);
-		}*/
 			for (int i = 0; i < boids.Length; i++) {
 				//float dist = Vector3.Distance (boids [i].transform.position, mousePos);
 				dir = Vector3.Normalize (mousePos - boids [i].transform.position);
@@ -184,76 +170,12 @@ public class BoidsScript : MonoBehaviour {
 
 					Vector3 v = boids [i].GetComponent<Rigidbody2D> ().velocity;
 					boids [i].GetComponent<Rigidbody2D> ().velocity = 6*Vector3.Normalize(0.4f*v + 0.6f*newVel);
-					//boids [i].GetComponent<Rigidbody2D> ().velocity = newWeight + separationV*sWeight + dir*dWeight));
+
 					//rotation
 					angle = Mathf.Atan2(boids[i].GetComponent<Rigidbody2D> ().velocity.y, boids [i].GetComponent<Rigidbody2D> ().velocity.x) * Mathf.Rad2Deg;
 					boids[i].transform.rotation = Quaternion.AngleAxis(angle - 180, Vector3.forward);
 				}
 			}
-			//flocking take 2
-			//FUCK FLOCKING
-			/*for (int i = 0; i < boids.Length; i++) {
-			neighbours = 0;
-			alignV = new Vector3 (0f, 0f, 0f);
-			posN = new Vector3 (0f, 0f, 0f);
-			sepN = 0;
-			distN = new Vector3 (0f, 0f, 0f);
-			for (int j = 0; j < boids.Length; j++) {
-				if (i != j) { //doesn't look at itself
-					iLoc = boids [i].transform.position;
-					jLoc = boids [j].transform.position;
-					dist = Vector3.Distance (Camera.main.WorldToScreenPoint(iLoc), Camera.main.WorldToScreenPoint(jLoc));
-
-					a1 = boids [i].transform.rotation.eulerAngles.z;
-					jRot = Vector3.Normalize (iLoc - jLoc);
-					a2 = Mathf.Atan2(jRot.y, jRot.x) * Mathf.Rad2Deg;
-					Debug.Log ("test " + a1 + " " + a2 + " " + Mathf.Abs(Mathf.DeltaAngle(a1,a2)));
-					if (Mathf.Abs(Mathf.DeltaAngle(a1,a2)) < 90) { //close enough and within field of view
-						if (dist < neighbourRadius) {
-							neighbours++;
-
-							//Cohesion
-							posN = posN + jLoc;
-
-							//Alignment
-							Vector3 aVel = boids [j].GetComponent<Rigidbody2D> ().velocity;
-							alignV = alignV + aVel;
-						}
-						if (dist < sepRadius) {
-							sepN++;
-
-							//Separation
-							distN = distN + (Vector3.Normalize (iLoc - jLoc));
-						}
-					}
-
-					if (neighbours > 0) {
-						//Cohesion
-						posN = new Vector3(posN.x/neighbours,posN.y/neighbours,0f);
-						cohesionV = Vector3.Normalize(posN - iLoc);
-
-						//Alignment
-						alignV = Vector3.Normalize (new Vector3(alignV.x / neighbours, alignV.y / neighbours, 0f));
-					}
-
-					if(sepN > 0){
-						//Separation
-						separationV = Vector3.Normalize (new Vector3(distN.x / sepN, distN.y / sepN, 0f));
-					}
-
-					//new velocity
-					Vector3 newVel = Vector3.Normalize(alignV*aWeight + cohesionV*cWeight + separationV*sWeight + dir*dWeight);
-
-					Vector3 v = boids [i].GetComponent<Rigidbody2D> ().velocity;
-					boids [i].GetComponent<Rigidbody2D> ().velocity = 4*Vector3.Normalize(0.5f*v + 0.4f*newVel);
-
-					//rotation
-					angle = Mathf.Atan2(boids[i].GetComponent<Rigidbody2D> ().velocity.y, boids [i].GetComponent<Rigidbody2D> ().velocity.x) * Mathf.Rad2Deg;
-					boids[i].transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
-				}
-			}
-		}*/
 			break;
 		case 2: //swarming
 			//update all the distances in bestPos
@@ -310,7 +232,6 @@ public class BoidsScript : MonoBehaviour {
 				for (int j = 0; j < boids.Length; j++) {
 					if (j != i) { //if not our current boid
 						//check if its close enought to be a neightbour
-
 						iLoc = Camera.main.WorldToScreenPoint (boids [i].transform.position);
 						jLoc = Camera.main.WorldToScreenPoint (boids [j].transform.position);
 						dist = Vector3.Distance (iLoc, jLoc);
@@ -343,9 +264,7 @@ public class BoidsScript : MonoBehaviour {
 				//rotation
 				angle = Mathf.Atan2(boids[i].GetComponent<Rigidbody2D> ().velocity.y, boids [i].GetComponent<Rigidbody2D> ().velocity.x) * Mathf.Rad2Deg;
 				boids[i].transform.rotation = Quaternion.AngleAxis(angle - 180, Vector3.forward);
-
 			}
-
 			break;
 		}
 	}

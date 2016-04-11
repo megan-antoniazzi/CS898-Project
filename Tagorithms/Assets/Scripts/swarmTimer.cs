@@ -8,7 +8,6 @@ public class swarmTimer : MonoBehaviour {
 	System.Timers.Timer LeTimer;
 	float timeLeft = 60f;
 	private timerBar barScript;
-	// Use this for initialization
 
 	void elapsed(object sender, ElapsedEventArgs e) {
 		//decrease time left (working in 1/5 of a second)
@@ -36,12 +35,8 @@ public class swarmTimer : MonoBehaviour {
 
 		LeTimer.Start();
 	}
-
-
-	// Update is called once per frame
+		
 	void Update () {
-		//When BoomDown reaches 0, BOOM!
-
 		if (timeLeft <= 0) {
 			//end screen
 			SceneManager.LoadScene ("SwarmEnd");

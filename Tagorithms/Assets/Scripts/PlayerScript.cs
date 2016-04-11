@@ -11,7 +11,6 @@ public class PlayerScript : MonoBehaviour {
 	private int touching = 1;
 	private float touchId = 1.1f;
 
-	// Use this for initialization
 	void Start () {
 		GameObject scoreObject = GameObject.FindWithTag ("Score");
 		if (scoreObject != null)
@@ -36,8 +35,7 @@ public class PlayerScript : MonoBehaviour {
 		//disable to lessen lag
 		QualitySettings.vSyncCount = 0;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		//is the player touhing the screen
 		if (Input.touchCount > 0) {
@@ -59,9 +57,8 @@ public class PlayerScript : MonoBehaviour {
 			if (touching == 1) {
 				transform.position = Vector3.MoveTowards(transform.position, mousePos, 1);
 				transform.position = new Vector3(mousePos.x,mousePos.y,0f);
-				//transform.position = new Vector2 (mousePos.x,mousePos.y); //Vector2.Lerp (transform.position, mousePos, 1);
 				//clamp it within visible screen
-				float size = 15f;//this.GetComponent<SpriteRenderer>().bounds.size.x;
+				float size = 15f;
 				Vector3 viewPos = Camera.main.WorldToScreenPoint (this.transform.position);
 				if (viewPos.x > Screen.width) {
 					viewPos.x = Screen.width - size;
@@ -86,9 +83,6 @@ public class PlayerScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		//reset the boid to a random location
-		//Destroy(coll.gameObject);
-		//Debug.Log("in here2");
-		//System.Console.WriteLine ("in here2");
 		Vector3 pos = Camera.main.ScreenToWorldPoint (new Vector3 (Random.Range (0.0F, Screen.width), Random.Range (0.0F, Screen.height), 0));
 		pos.z = 0f;
 		coll.transform.position = pos;
@@ -96,7 +90,6 @@ public class PlayerScript : MonoBehaviour {
 
 		scoreScript.UpdateScore ();
 
-		//Debug.Log (type);
 		switch (type) {
 		case 0:
 			data.UpdateControl (scoreScript.score);

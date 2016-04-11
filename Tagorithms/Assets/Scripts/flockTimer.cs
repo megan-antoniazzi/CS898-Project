@@ -36,12 +36,8 @@ public class flockTimer : MonoBehaviour {
 
 		LeTimer.Start();
 	}
-
-
-	// Update is called once per frame
+		
 	void Update () {
-		//When BoomDown reaches 0, BOOM!
-
 		if (timeLeft <= 0) {
 			//end screen
 			SceneManager.LoadScene ("FlockEnd");

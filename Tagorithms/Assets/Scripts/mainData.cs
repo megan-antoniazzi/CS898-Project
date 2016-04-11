@@ -8,7 +8,6 @@ public class mainData : MonoBehaviour {
 	public int scoreSwarm;
 	public int scoreFirefly;
 
-	//Needs to be static.
 	private static bool spawned = false;
 	void Awake()
 	{
@@ -16,12 +15,10 @@ public class mainData : MonoBehaviour {
 		{
 			spawned = true;
 			DontDestroyOnLoad(gameObject);
-			//Code...
 		}
 		else
 		{
-			DestroyImmediate(gameObject); //This deletes the new object/s that you
-			// mentioned were being created
+			DestroyImmediate(gameObject); //This deletes new gameObjects that are being created
 		}
 	}
 
@@ -37,8 +34,7 @@ public class mainData : MonoBehaviour {
 	void Start () {
 		reset ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}

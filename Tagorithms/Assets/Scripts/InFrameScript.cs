@@ -6,19 +6,12 @@ public class InFrameScript : MonoBehaviour {
 	public float moveSpeed = 0.1f;
 	private Vector3 mousePos;
 
-	// Use this for initialization
 	void Start () {
-		//randomize the position somehow
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		//mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		//transform.position = Vector2.Lerp (transform.position, mousePos, moveSpeed);
-
+		
 		//clamp it within visible screen
-		//float widthRel = this.transform.localScale.x / (Screen.width);
-		//float heightRel = this.transform.localScale.y / (Screen.height);
 		Vector3 viewPos = Camera.main.WorldToScreenPoint (this.transform.position);
 		if (viewPos.x > Screen.width) {
 			viewPos.x = 0.1f;

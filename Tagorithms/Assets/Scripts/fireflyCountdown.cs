@@ -53,8 +53,7 @@ public class fireflyCountdown : MonoBehaviour {
 			GUIStyle guiStyle = new GUIStyle ();
 			guiStyle.fontSize = (int) (Screen.width * 0.2f);
 			guiStyle.normal.textColor = new Color32 (141, 26, 0, 255);
-			// display countdown    
-			//GUI.color = Color.red; 
+			// display countdown     
 			GUI.Label (new Rect (Screen.width / 2f-Screen.width * 0.05f, Screen.height/2f-Screen.width * 0.1f, 180f, 140f), countdown, guiStyle);
 		}    
 	}
